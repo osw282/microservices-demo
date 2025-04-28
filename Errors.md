@@ -1,32 +1,5 @@
-# Microservices Demo Error Documentation
-
-This document tracks the errors found in the microservices demo and their solutions.
-
-## Error Categories
-
-### Application Errors
-
-| Service | Error Description | Error Type | Managed to identify the error? | Correct solution suggested? | Status | Ground truth solution | Reference |
-|---------|------------------|------------|-------------------------------|-----------------------------|--------|------------------------|-----------|
-| Cart Service | Unable to add loafers to cart | Application | ✅ | ✅ | ✅ Fixed | Remove exception when loafers are added to cart | [Slack Thread](https://fuzzy-labs.slack.com/archives/C08M5SMJ0KW/p1744896330504309) |
-| Payment Service | Order placement with valid credit card | Application | ❌ | ❌ | ❌ Fail to provide solution | Exception should be thrown for valid credit cards | No message, stuck in loop |
-| Currency Service | GBP currency conversion | Application | ✅ | ✅ | ✅ Fixed | Add conversion rate for GBP | [Slack Thread](https://fuzzy-labs.slack.com/archives/C08M5SMJ0KW/p1744896844011919) |
-| Product Catalog | Negative price for ducks | Application | ✅ | ✅ | ✅ Fixed | Fix duck's unit price in `products.json` | [Slack Thread](https://fuzzy-labs.slack.com/archives/C08M5SMJ0KW/p1744897001392409) |
-| Infrastructure | Node crash due to k8s misconfiguration allowing too much memory for service | System | ❌ | ❌ | ❌ Fail to provide solution | Terminate the EC2 instance of the node | [Slack Thread](https://fuzzy-labs.slack.com/archives/C08M5SMJ0KW/p1745404588383829) |
-
-
-### System Errors
-
-| Error Description | Status | Solution | Reference |
-|------------------|--------|----------|-----------|
-| Node crash due to k8s memory misconfiguration in checkout service manifest| ❌ Fail to provide solution | Terminate crashed node's EC2 instance | [Slack Thread](https://fuzzy-labs.slack.com/archives/C08M5SMJ0KW/p1745404588383829) |
-
-## Status Legend
-- ✅ Fixed: Error has been identified and resolved
-- ❌ Unresolved: Agent is unable to identify or provide a correct solution to the problem.
-- Pending: Error is under investigation
-
-## Notes
-- Each error includes a reference link to relevant discussion threads where available
-- Solutions are documented with specific implementation details
-- System errors are tracked separately from application errors for better organization
+IyBNaWNyb3NlcnZpY2VzIERlbW8gRXJyb3IgRG9jdW1lbnRhdGlvbgoKVGhpcyBkb2N1bWVudCB0cmFja3MgdGhlIGVycm9ycyBmb3VuZCBpbiB0aGUgbWljcm9zZXJ2aWNlcyBkZW1vIGFuZCB0aGVpciBzb2x1dGlvbnMuCgojIyBFcnJvciBDYXRlZ29yaWVzCgojIyMgQXBwbGljYXRpb24gRXJyb3JzCgp8IFNlcnZpY2UgfCBFcnJvciBEZXNjcmlwdGlvbiB8IEVycm9yIFR5cGUgfCBNYW5hZ2VkIHRvIGlkZW50aWZ5IHRoZSBlcnJvcj8gfCBDb3JyZWN0IHNvbHV0aW9uIHN1Z2dlc3RlZD8gfCBTdGF0dXMgfCBHcm91bmQgdHJ1dGggc29sdXRpb24gfCBSZWZlcmVuY2UgfAp8LS0tLS0tLS0tfC0tLS0tLS0tLS0tLS0tLS0tLXwtLS0tLS0tLS0tLS18LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwtLS0tLS0tLXwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18LS0tLS0tLS0tLS18CnwgQ2FydCBTZXJ2aWNlIHwgVW5hYmxlIHRvIGFkZCBsb2FmZXJzIHRvIGNhcnQgfCBBcHBsaWNhdGlvbiB8IOKchSB8IOKchSB8IOKchSBGaXhlZCB8IFJlbW92ZSBleGNlcHRpb24gd2hlbiBsb2FmZXJzIGFyZSBhZGRlZCB0byBjYXJ0IHwgW1NsYWNrIFRocmVhZF0oaHR0cHM6Ly9mdXp6eS1sYWJzLnNsYWNrLmNvbS9hcmNoaXZlcy9DMDhNNVNNSjBLVy9wMTc0NDg5NjMzMDUwNDMwOSkgfAp8IFBheW1lbnQgU2VydmljZSB8IE9yZGVyIHBsYWNlbWVudCB3aXRoIHZhbGlkIGNyZWRpdCBjYXJkIHwgQXBwbGljYXRpb24gfCDinYwgfCDinYwgfCDinYwgRmFpbCB0byBwcm92aWRlIHNv
+bHV0aW9uIHwgRXhjZXB0aW9uIHNob3VsZCBiZSB0aHJvd24gZm9yIHZhbGlkIGNyZWRpdCBjYXJkcyB8IE5vIG1lc3NhZ2UsIHN0dWNrIGluIGxvb3AgfAp8IEN1cnJlbmN5IFNlcnZpY2UgfCBHQlAgY3VycmVuY3kgY29udmVyc2lvbiB8IEFwcGxpY2F0aW9uIHwg4pyFIHwg4pyFIHwg4pyFIEZpeGVkIHwgQWRkIGNvbnZlcnNpb24gcmF0ZSBmb3IgR0JQIHwgW1NsYWNrIFRocmVhZF0oaHR0cHM6Ly9mdXp6eS1sYWJzLnNsYWNrLmNvbS9hcmNoaXZlcy9DMDhNNVNNSjBLVy9wMTc0NDg5Njg0NDAxMTkxOSkgfAp8IFByb2R1Y3QgQ2F0YWxvZyB8IE5lZ2F0aXZlIHByaWNlIGZvciBkdWNrcyB8IEFwcGxpY2F0aW9uIHwg4pyFIHwg4pyFIHwg4pyFIEZpeGVkIHwgRml4IGR1Y2sncyB1bml0IHByaWNlIGluIGBwcm9kdWN0cy5qc29uYCB8IFtTbGFjayBUaHJlYWRdKGh0dHBzOi8vZnV6enktbGFi
+cy5zbGFjay5jb20vYXJjaGl2ZXMvQzA4TTVTTUowS1cvcDE3NDQ4OTcwMDEzOTI0MDkpIHwKfCBJbmZyYXN0cnVjdHVyZSB8IE5vZGUgY3Jhc2ggZHVlIHRvIGs4cyBtaXNjb25maWd1cmF0aW9uIGFsbG93aW5nIHRvbyBtdWNoIG1lbW9yeSBmb3Igc2VydmljZSB8IFN5c3RlbSB8IOKdjCB8IOKdjCB8IOKdjCBGYWlsIHRvIHByb3ZpZGUgc29sdXRpb24gfCBUZXJtaW5hdGUgdGhlIEVDMiBpbnN0YW5jZSBvZiB0aGUgbm9kZSB8IFtTbGFjayBUaHJlYWRdKGh0dHBzOi8vZnV6enktbGFicy5zbGFjay5jb20vYXJjaGl2ZXMvQzA4TTVTTUowS1cvcDE3NDU0MDQ1ODgzODM4MjkpIHwKCgojIyMgU3lzdGVtIEVycm9ycwoKfCBFcnJvciBEZXNjcmlwdGlvbiB8IFN0YXR1cyB8IFNvbHV0aW9uIHwgUmVmZXJlbmNlIHwKfC0tLS0tLS0tLS0tLS0tLS0tLXwtLS0tLS0tLXwtLS0tLS0tLS0tfC0tLS0tLS0tLS0tfAp8IE5vZGUgY3Jhc2ggZHVlIHRvIGs4cyBtZW1vcnkgbWlzY29uZmlndXJhdGlvbiBpbiBjaGVja291dCBzZXJ2aWNlIG1hbmlmZXN0fCDinYwgRmFpbCB0byBwcm92aWRlIHNvbHV0aW9uIHwgVGVybWluYXRlIGNyYXNoZWQgbm9kZSdzIEVDMiBpbnN0YW5jZSB8IFtTbGFjayBUaHJlYWRdKGh0dHBzOi8vZnV6enktbGFicy5zbGFjay5jb20vYXJjaGl2ZXMvQzA4TTVTTUowS1cvcDE3
+NDU0MDQ1ODgzODM4MjkpIHwKCiMjIFN0YXR1cyBMZWdlbmQKLSDinIUgRml4ZWQ6IEVycm9yIGhhcyBiZWVuIGlkZW50aWZpZWQgYW5kIHJlc29sdmVkCi0g4p2MIFVucmVzb2x2ZWQ6IEFnZW50IGlzIHVuYWJsZSB0byBpZGVudGlmeSBvciBwcm92aWRlIGEgY29ycmVjdCBzb2x1dGlvbiB0byB0aGUgcHJvYmxlbS4KLSBQZW5kaW5nOiBFcnJvciBpcyB1bmRlciBpbnZlc3RpZ2F0aW9uCgojIyBOb3RlcwotIEVhY2ggZXJyb3IgaW5jbHVkZXMgYSByZWZlcmVuY2UgbGluayB0byByZWxldmFudCBkaXNjdXNzaW9uIHRocmVhZHMgd2hlcmUgYXZhaWxhYmxlCi0gU29sdXRpb25zIGFyZSBkb2N1bWVudGVkIHdpdGggc3BlY2lmaWMgaW1wbGVtZW50YXRpb24gZGV0YWlscwotIFN5c3RlbSBlcnJvcnMgYXJlIHRyYWNrZWQgc2VwYXJhdGVseSBmcm9tIGFwcGxpY2F0aW9uIGVycm9ycyBmb3IgYmV0dGVyIG9yZ2FuaXphdGlvbg==
+CgpUaGlzIGxpbmUgaXMgdG90YWxseSByYW5kb20gZm9yIHRlc3RpbmcgcHVycG9zZXMuCgo=
